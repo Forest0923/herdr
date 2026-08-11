@@ -127,6 +127,11 @@ impl ClientShellState {
                 }
                 if action == crate::input::KeybindAction::WorkspacePicker {
                     self.mobile_switcher_scroll = 0;
+                    if self.config.show_sidebar_on_workspace_switch && self.sidebar_collapsed {
+                        self.sidebar_collapsed = false;
+                        self.invalidate_pane_surface();
+                        outcome.resize = true;
+                    }
                     self.reveal_mobile_workspace = false;
                     self.mode = ClientShellMode::Navigate;
                     self.navigate_workspace_id = self

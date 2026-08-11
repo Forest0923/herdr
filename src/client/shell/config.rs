@@ -129,6 +129,7 @@ impl ClientShellConfig {
             keybinding_source: ClientShellKeybindingSource::Local,
             prompt_new_tab_name: config.ui.prompt_new_tab_name,
             prompt_new_workspace_name: config.ui.prompt_new_workspace_name,
+            show_sidebar_on_workspace_switch: config.ui.show_sidebar_on_workspace_switch,
             confirm_close: config.ui.confirm_close,
             mouse_capture: config.ui.mouse_capture,
             mouse_scroll_lines: config.ui.mouse_scroll_lines(),
@@ -319,6 +320,7 @@ impl ClientShellConfig {
                 self.clipboard_toast_position = ui.toast.clipboard.position;
                 self.prompt_new_tab_name = ui.prompt_new_tab_name;
                 self.prompt_new_workspace_name = ui.prompt_new_workspace_name;
+                self.show_sidebar_on_workspace_switch = ui.show_sidebar_on_workspace_switch;
                 self.confirm_close = ui.confirm_close;
                 self.mouse_capture = ui.mouse_capture;
                 self.mouse_scroll_lines = ui.mouse_scroll_lines();
