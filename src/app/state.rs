@@ -1800,7 +1800,7 @@ impl AppState {
             confirm_close: true,
             prompt_new_tab_name: true,
             prompt_new_workspace_name: false,
-            show_sidebar_on_workspace_switch: false,
+            show_sidebar_on_workspace_switch: true,
             pane_borders: true,
             pane_outer_borders: true,
             pane_scrollbars: true,
