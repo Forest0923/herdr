@@ -258,6 +258,9 @@ impl App {
             }
             NavigateAction::WorkspacePicker => {
                 self.state.mobile_switcher_scroll = 0;
+                if self.state.show_sidebar_on_workspace_switch && self.state.sidebar_collapsed {
+                    self.state.sidebar_collapsed = false;
+                }
                 self.state.mode = Mode::Navigate;
             }
             NavigateAction::PreviousWorkspace => {
@@ -1710,6 +1713,9 @@ pub(super) fn execute_navigate_action_in_context(
         }
         NavigateAction::WorkspacePicker => {
             state.mobile_switcher_scroll = 0;
+            if state.show_sidebar_on_workspace_switch && state.sidebar_collapsed {
+                state.sidebar_collapsed = false;
+            }
             state.mode = Mode::Navigate;
         }
         NavigateAction::PreviousWorkspace => {
