@@ -878,6 +878,8 @@ pub struct UiConfig {
     pub prompt_new_tab_name: bool,
     /// Ask for a workspace name before interactive creation. Default: false.
     pub prompt_new_workspace_name: bool,
+    /// Show the sidebar when switching workspaces via the workspace picker. Default: false.
+    pub show_sidebar_on_workspace_switch: bool,
     /// Draw borders around split panes. Default: true.
     pub pane_borders: bool,
     /// Draw borders along the outside edge of the pane area. Default: true.
@@ -1109,6 +1111,7 @@ impl Default for UiConfig {
             confirm_close: true,
             prompt_new_tab_name: true,
             prompt_new_workspace_name: false,
+            show_sidebar_on_workspace_switch: false,
             pane_borders: true,
             pane_outer_borders: true,
             pane_scrollbars: true,
