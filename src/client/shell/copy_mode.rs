@@ -10,6 +10,14 @@ impl ClientShellState {
     }
 
     pub(super) fn enter_copy_mode(&mut self, outcome: &mut ClientShellInput) -> bool {
+        self.enter_copy_mode_with_scroll(None, outcome)
+    }
+
+    pub(super) fn enter_copy_mode_with_scroll(
+        &mut self,
+        initial_scroll: Option<i8>,
+        outcome: &mut ClientShellInput,
+    ) -> bool {
         let pane_id = match self.focused_pane_id() {
             Some(pane_id) => pane_id,
             None => return false,
@@ -20,6 +28,9 @@ impl ClientShellState {
             .is_some_and(|copy_mode| copy_mode.pane_id == pane_id)
         {
             self.mode = ClientShellMode::Copy;
+            if let Some(direction) = initial_scroll {
+                self.move_copy_page(direction, false, outcome);
+            }
             return true;
         }
         if self.copy_mode.is_some() {
@@ -95,6 +106,9 @@ impl ClientShellState {
             copy_after_search: false,
         });
         self.mode = ClientShellMode::Copy;
+        if let Some(direction) = initial_scroll {
+            self.move_copy_page(direction, false, outcome);
+        }
         true
     }
 

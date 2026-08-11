@@ -147,6 +147,12 @@ impl ClientShellState {
                     }
                     return;
                 }
+                if action == crate::input::KeybindAction::CopyModePageUp {
+                    if self.enter_copy_mode_with_scroll(Some(-1), outcome) {
+                        outcome.repaint = true;
+                    }
+                    return;
+                }
                 if self.handle_endpoint_navigation(action, outcome) {
                     return;
                 }
