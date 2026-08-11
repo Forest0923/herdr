@@ -28,6 +28,14 @@ impl App {
 
 impl AppState {
     pub(crate) fn enter_copy_mode(&mut self, terminal_runtimes: &TerminalRuntimeRegistry) {
+        self.enter_copy_mode_with_scroll(terminal_runtimes, None);
+    }
+
+    pub(crate) fn enter_copy_mode_with_scroll(
+        &mut self,
+        terminal_runtimes: &TerminalRuntimeRegistry,
+        initial_scroll: Option<i16>,
+    ) {
         let Some(ws_idx) = self.active else {
             return;
         };
@@ -73,6 +81,10 @@ impl AppState {
             },
         });
         self.mode = Mode::Copy;
+
+        if let Some(direction) = initial_scroll {
+            self.scroll_copy_mode_page(terminal_runtimes, direction, false);
+        }
     }
 
     pub(crate) fn handle_copy_mode_key(
