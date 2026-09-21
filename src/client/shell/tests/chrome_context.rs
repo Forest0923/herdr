@@ -384,3 +384,33 @@ fn close_confirmation_error_becomes_client_owned_overlay_and_stable_group_close(
             if params.workspace_id == "ws_1" && params.close_group
     ));
 }
+
+#[test]
+fn workspace_picker_expands_collapsed_sidebar_by_default() {
+    let mut state = ClientShellState::new(ClientShellConfig::from_config(&Config::default()));
+    assert!(state.config.show_sidebar_on_workspace_switch);
+    state.set_snapshot(Box::new(snapshot()));
+    state.set_pane_surface(surface());
+    state.sidebar_collapsed = true;
+
+    let mut outcome = ClientShellInput::default();
+    state.record_binding(
+        crate::input::KeybindMatch::Action(crate::input::KeybindAction::WorkspacePicker),
+        &mut outcome,
+    );
+    assert!(!state.sidebar_collapsed);
+    assert!(matches!(state.mode, ClientShellMode::Navigate));
+
+    let mut state = ClientShellState::new(ClientShellConfig::from_config(&Config::default()));
+    state.config.show_sidebar_on_workspace_switch = false;
+    state.set_snapshot(Box::new(snapshot()));
+    state.set_pane_surface(surface());
+    state.sidebar_collapsed = true;
+
+    let mut outcome = ClientShellInput::default();
+    state.record_binding(
+        crate::input::KeybindMatch::Action(crate::input::KeybindAction::WorkspacePicker),
+        &mut outcome,
+    );
+    assert!(state.sidebar_collapsed);
+}

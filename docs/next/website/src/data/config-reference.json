@@ -704,6 +704,12 @@
           "description": "Enter keyboard copy mode for the focused pane."
         },
         {
+          "key": "keys.copy_mode_page_up",
+          "type": "keybinding",
+          "default": "\"prefix+PageUp\"",
+          "description": "Enter keyboard copy mode for the focused pane, starting scrolled up one page."
+        },
+        {
           "key": "keys.focus_pane_left",
           "type": "keybinding",
           "default": "\"prefix+h\"",
@@ -951,6 +957,12 @@
           "type": "boolean",
           "default": "false",
           "description": "Ask for a workspace name before interactive TUI creation."
+        },
+        {
+          "key": "ui.show_sidebar_on_workspace_switch",
+          "type": "boolean",
+          "default": "true",
+          "description": "Show the sidebar when switching workspaces via the workspace picker."
         },
         {
           "key": "ui.pane_borders",
